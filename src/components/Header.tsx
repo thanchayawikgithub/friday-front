@@ -1,26 +1,4 @@
-import {
-  Badge,
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownSection,
-  DropdownTrigger,
-  Image,
-  Input,
-  Listbox,
-  ListboxItem,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  Navbar,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  useDisclosure,
-} from "@nextui-org/react";
+import { Badge, Button, Navbar, useDisclosure } from "@nextui-org/react";
 import Icon from "@mdi/react";
 import {
   mdiHeartOutline,
@@ -35,6 +13,10 @@ import SignInModal from "./modal/SignInModal";
 import SignUpModal from "./modal/SignUpModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { authSelector } from "../store/slice/authSlice";
+
 export default function Header() {
   const {
     isOpen: isOpenSignIn,
@@ -61,6 +43,8 @@ export default function Header() {
       path: "/menu",
     },
   ];
+
+  const authState = useSelector(authSelector);
   return (
     <>
       <SignUpModal
@@ -74,9 +58,9 @@ export default function Header() {
         onOpenSignUp={onOpenSignUp}
       />
       <Navbar
-        shouldHideOnScroll
         maxWidth="full"
         className="pt-3 pb-3 px-[6.5rem]"
+        isBlurred={false}
       >
         <div className="my-auto flex flex-row gap-10">
           <FontAwesomeIcon
@@ -109,6 +93,7 @@ export default function Header() {
           </p> */}
           {menus.map((menu) => (
             <p
+              key={menu.name}
               className={classNames({
                 "text-2xl hover:text-orange-600 cursor-pointer mt-1": true,
                 "text-orange-600": currentRoute.pathname === menu.path,
@@ -129,18 +114,31 @@ export default function Header() {
             <Button
               isIconOnly
               variant="light"
-              className="mt-1 hover:text-orange-600"
+              className={classNames({
+                "mt-1 hover:text-orange-600": true,
+                "text-orange-600": currentRoute.pathname === "/cart",
+              })}
+              onPress={() => navigate("/cart")}
             >
               <Icon path={mdiShoppingOutline} size={1.3}></Icon>
             </Button>
           </Badge>
-          <Button
-            onPress={onOpenSignIn}
-            className="bg-gradient-to-br from-orange-600  to-orange-500 text-white rounded-full text-lg font-bold"
-            size="lg"
-          >
-            Sign In
-          </Button>
+          {authState.isAuthenticated ? (
+            <Button
+              className="bg-gradient-to-br from-orange-600  to-orange-500 text-white rounded-full text-lg font-bold"
+              size="lg"
+            >
+              {authState.currentCustomer?.firstname}
+            </Button>
+          ) : (
+            <Button
+              onPress={onOpenSignIn}
+              className="bg-gradient-to-br from-orange-600  to-orange-500 text-white rounded-full text-lg font-bold"
+              size="lg"
+            >
+              Sign In
+            </Button>
+          )}
         </div>
       </Navbar>
     </>

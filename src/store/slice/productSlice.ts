@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Product from "../../types/Product";
+import Product from "../../types/product/Product";
+import { RootState } from "../store";
 
 interface ProductState {
   recommendProducts: Product[];
@@ -52,7 +53,7 @@ const initialState: ProductState = {
       },
     },
     {
-      id: 4,
+      id: 5,
       name: "Meat Deluxe",
       image: "hawaiien pizza.png",
       desciption: "Ham, Bacon, Pineapple, Mozzarella Cheese and Pizza Sauce",
@@ -63,7 +64,7 @@ const initialState: ProductState = {
       },
     },
     {
-      id: 4,
+      id: 6,
       name: "Meat Deluxe",
       image: "hawaiien pizza.png",
       desciption: "Ham, Bacon, Pineapple, Mozzarella Cheese and Pizza Sauce",
@@ -74,7 +75,7 @@ const initialState: ProductState = {
       },
     },
     {
-      id: 4,
+      id: 7,
       name: "Meat Deluxe",
       image: "hawaiien pizza.png",
       desciption: "Ham, Bacon, Pineapple, Mozzarella Cheese and Pizza Sauce",
@@ -93,4 +94,5 @@ const productSlice = createSlice({
   initialState,
 });
 
+export const productSelector = (state: RootState) => state.product;
 export default productSlice.reducer;

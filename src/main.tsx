@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { BrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
-import router from "./router/Router";
+import router from "./router/AppRoutes";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import Header from "./components/Header";

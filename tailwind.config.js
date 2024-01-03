@@ -18,6 +18,10 @@ export default {
               foreground: "white",
               DEFAULT: "#ea580c",
             },
+            secondary: {
+              foreground: "#ea580c",
+              DEFAULT: "white",
+            },
           },
         },
       },

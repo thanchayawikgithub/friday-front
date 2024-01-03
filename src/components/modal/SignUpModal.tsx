@@ -43,9 +43,9 @@ export default function SignUpModal({
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="text-center text-orange-600">
+              {/* <ModalHeader className="text-center text-orange-600">
                 Sign Up
-              </ModalHeader>
+              </ModalHeader> */}
               <ModalBody>
                 <div className="grid grid-cols-2 gap-3">
                   <Input

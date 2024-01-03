@@ -2,6 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import CreateCustomerData from "../../types/Customer/CreateCustomerData";
 import customerService from "../../service/customerService";
 import Customer from "../../types/Customer/Customer";
+import { RootState } from "../store";
 
 interface CustomerState {
   isSignUpSuccess: boolean;
@@ -52,5 +53,7 @@ export const getAllCustomer = createAsyncThunk(
     }
   }
 );
+
+export const customerSelector = (state: RootState) => state.customer;
 
 export default customerSlice.reducer;

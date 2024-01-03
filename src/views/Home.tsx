@@ -5,15 +5,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
 import { getAllCustomer } from "../store/slice/customerSlice";
+import { authSelector, getCurrentCustomer } from "../store/slice/authSlice";
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
-  const recommendProducts = useSelector(
-    (state: RootState) => state.product.recommendProducts
-  );
-  useEffect(() => {
-    dispatch(getAllCustomer());
-  }, []);
+  const authState = useSelector(authSelector);
+  useEffect(() => {}, []);
   return (
     <>
       <div className="px-32">
