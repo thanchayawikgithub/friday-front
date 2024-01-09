@@ -22,8 +22,7 @@ import {
 } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { addToCart } from "../../store/slice/cartSlice";
-import CartItem from "../../types/CartItem";
+
 import { productSelector } from "../../store/slice/productSlice";
 
 export default function MenuPage() {
